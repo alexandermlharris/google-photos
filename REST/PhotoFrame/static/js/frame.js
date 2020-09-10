@@ -12,6 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+function shuffle(aThing) {
+  //var aThing = $('#images-container a');
+
+  var m = aThing.length, t, i;
+
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+
+    t = aThing[m];
+    aThing[m] = aThing[i];
+    aThing[i] = t;
+  }
+
+  // $('#images-container').empty();
+  // $('#images-container').append(aThing);
+}
+
 // Empties the grid of images.
 function clearPreview() {
   showPreview(null, null);
@@ -47,6 +64,7 @@ function showPreview(source, mediaItems) {
     $('startSlideshow').removeClass('disabled');
   }
 
+  shuffle(mediaItems);
   // Loop over each media item and render it.
   $.each(mediaItems, (i, item) => {
     // Construct a thumbnail URL from the item's base URL at a small pixel size.
